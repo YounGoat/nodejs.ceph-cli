@@ -1,0 +1,31 @@
+{
+    "bin": {
+        "ceph": "bin/ceph.js"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "mocha": "^3.3.0"
+    },
+    "directories": {},
+    "scripts": {
+        "test": "mocha"
+    },
+    "name": "ceph-cli",
+    "version": "0.0.1",
+    "main": "index.js",
+    "keywords": [
+        "ceph",
+        "cli"
+    ],
+    "homepage": "https://github.com/YounGoat/nodejs.ceph-cli",
+    "description": "CEPH command line interface",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/YounGoat/nodejs.ceph-cli.git"
+    },
+    "author": {
+        "name": "YounGoat",
+        "email": "youngoat@163.com",
+        "url": "https://youngoat.github.io"
+    }
+}

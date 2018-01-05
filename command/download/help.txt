@@ -1,0 +1,16 @@
+
+NAME
+    ceph download - Download object from remote CEPH storage and save as local file.
+
+SYNOPSIS
+    ceph download [--file <pathname>] --name <object-name> --connection <pathname>
+
+OPTIONS
+    --file | -f <pathname>
+    The file to save the object content. If not offered, it will be piped to STDOUT.
+    
+    --name <object-name>
+    Object name used in CEPH storage.
+
+    --connection | -c <pathname>
+    CEPH storage connection configuration file.

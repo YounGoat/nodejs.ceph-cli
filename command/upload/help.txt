@@ -1,0 +1,16 @@
+
+NAME
+    ceph upload - Upload file in local system onto remote CEPH storage. 
+
+SYNOPSIS
+    ceph upload --file <pathname> --name <object-name> --connection <pathname>
+
+OPTIONS
+    --file | -f <pathname>
+    The file to be uploaded.
+    
+    --name <object-name>
+    Object name used in CEPH storage.
+
+    --connection | -c <pathname>
+    CEPH storage connection configuration file.
