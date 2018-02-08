@@ -1,0 +1,16 @@
+
+NAME
+    ceph container delete - Delete container from remote CEPH storage. 
+
+SYNOPSIS
+    ceph container delete --connection <pathname> [--force] [--name] <container-name> 
+
+OPTIONS
+    --name | --container <container-name>
+    Container name.
+
+    --connection | -c <pathname>
+    CEPH storage connection configuration file.
+
+    --force
+    Remove the container even if it is not empty.

@@ -3,7 +3,8 @@ NAME
     ceph upload - Upload file in local system onto remote CEPH storage. 
 
 SYNOPSIS
-    ceph upload --file <pathname> --name <object-name> --connection <pathname>
+    ceph upload --file <pathname> --name <object-name> --connection <pathname> 
+    [--container <container-name>] [--content-type <mime>]
 
 OPTIONS
     --file | -f <pathname>
@@ -14,3 +15,9 @@ OPTIONS
 
     --connection | -c <pathname>
     CEPH storage connection configuration file.
+
+    --container <container-name>
+    The container name on CEPH storage.
+
+    --content-type <mime>
+    Content type of uploaded file.

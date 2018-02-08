@@ -3,7 +3,7 @@ NAME
     ceph download - Download object from remote CEPH storage and save as local file.
 
 SYNOPSIS
-    ceph download [--file <pathname>] --name <object-name> --connection <pathname>
+    ceph download [--file <pathname>] --name <object-name> --connection <pathname> [--container <container-name>] [--verbose]
 
 OPTIONS
     --file | -f <pathname>
@@ -14,3 +14,9 @@ OPTIONS
 
     --connection | -c <pathname>
     CEPH storage connection configuration file.
+
+    --container <container-name>
+    The container name on CEPH storage.
+
+    --verbose | -v
+    Verbose output.

@@ -29,9 +29,7 @@ function help() {
 	console.log(fs.readFileSync(path.join(__dirname, './help.txt'), 'utf8'));
 }
 
-function download(connPathname, cephName, filePathname) {
-	const connJson = JSON.parse(fs.readFileSync(connPathname, 'utf8'));
-	const conn = ceph.createConnection(connJson);
+function download(conn, cephName, filePathname, verbose) {
 	const callback = (err) => {
 		if (err) err.print ? err.print() : console.log(err.message);
 		else if (filePathname) console.log(`Object downloaded to ${filePathname}`);	
@@ -39,6 +37,14 @@ function download(connPathname, cephName, filePathname) {
 	let output = filePathname ? fs.createWriteStream(filePathname) : process.stdout;
 	conn.pullObject(cephName, callback)
 		.on('error', () => 0)
+		.on('meta', (meta) => {
+			if (verbose) {
+				for (let name in meta) {
+					console.log('>', name, ':', meta[name]);
+				}
+				console.log();
+			}
+		})
 		.on('end', () => console.log())
 		.pipe(output);
 }
@@ -49,8 +55,10 @@ function run(argv) {
 			'--help -h [*:=*help] REQUIRED', 
 		], [
 			'--file -f',
-			'--name REQUIRED',
+			'--name REQUIRED NOT NULLABLE',
+			'--container NOT NULLABLE',
 			'--connection -c REQUIRED',
+			'--verbose -v NOT ASSIGNABLE',
 		]
 	];
 	const cmd = commandos.parse([ 'foo' ].concat(argv), { groups, catcher: help });
@@ -66,7 +74,14 @@ function run(argv) {
 			cmd.file = path.resolve(cmd.file);
 			mkdirp(path.dirname(cmd.file));
 		}
-		download(cmd.connection, cmd.name, cmd.file);
+
+		const connJson = JSON.parse(fs.readFileSync(cmd.connection, 'utf8'));
+		if (cmd.container) {
+			connJson.container = cmd.container;
+		}
+		const conn = ceph.createConnection(connJson);
+
+		download(conn, cmd.name, cmd.file, cmd.verbose);
 	}
 }
 

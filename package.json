@@ -2,16 +2,16 @@
     "bin": {
         "ceph": "bin/ceph.js"
     },
-    "dependencies": {},
-    "devDependencies": {
-        "mocha": "^3.3.0"
+    "dependencies": {
+        "ceph": "^0.4.2",
+        "commandos": "^0.1.5",
+        "noda": "^0.2.0"
     },
+    "devDependencies": {},
     "directories": {},
-    "scripts": {
-        "test": "mocha"
-    },
+    "scripts": {},
     "name": "ceph-cli",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "main": "index.js",
     "keywords": [
         "ceph",

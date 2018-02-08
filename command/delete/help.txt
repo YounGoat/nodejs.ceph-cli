@@ -1,0 +1,16 @@
+
+NAME
+    ceph detele - Delete file (object) from remote CEPH storage. 
+
+SYNOPSIS
+    ceph delete --name <object-name> --connection <pathname> [--container <container-name>]
+
+OPTIONS
+    --name <object-name>
+    Object name used in CEPH storage.
+
+    --container <container-name>
+    Container name.
+
+    --connection | -c <pathname>
+    CEPH storage connection configuration file.

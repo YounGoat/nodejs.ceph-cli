@@ -1,0 +1,13 @@
+
+NAME
+    ceph container create - Create new container on remote CEPH storage. 
+
+SYNOPSIS
+    ceph container create --connection <pathname> [--name] <container-name> 
+
+OPTIONS
+    --name | --container <container-name>
+    Container name.
+
+    --connection | -c <pathname>
+    CEPH storage connection configuration file.

@@ -1,12 +1,13 @@
 #	ceph-cli
 __CEPH command line interface__
 
+Help you easily managing your CEPH storage.
+
 ##	Table of contents
 
 *	[Get Started](#get-started)
 * 	[Sub Commands](#sub-commands)
-*	[About](#about)
-*	[References](#references)
+*	[Recommendations](#recommendations)
 
 ##	Links
 
@@ -33,11 +34,29 @@ Here `conn.json` is a JSON formatted file which contains necessary connection co
 
 ##	Sub Commands
 
-The following sub commands are avaiable under command `ceph`:
-*	create-container
-*	download
-*	upload
+The following sub commands or command-sets are avaiable under command `ceph`:
+*	__container__  
+	To manage the containers.
+	-	__clear__
+	-	__create__
+	-	__delete__
+	-	__list__
+*	__delete__  
+	To delete an object.
 
-##  About
+*	__download__  
+	To download an object to local file system.
 
-##  References
+*	__upload__  
+	To create an object with content in the specified file.
+
+1.	Run `ceph` to print main manual page.
+1.	Run `ceph <subset-name>` to print manual page for sub command set.
+
+##  Recommendations
+
+*   [ceph](https://www.npmjs.com/package/ceph)
+*   [ceph-agent](https://www.npmjs.com/package/ceph-agent)
+*   [ceph-cli](https://www.npmjs.com/package/ceph-cli)
+*   [ceph-sync](https://www.npmjs.com/package/ceph-sync)
+*   [osapi](https://www.npmjs.com/package/osapi)

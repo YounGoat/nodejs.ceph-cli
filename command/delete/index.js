@@ -17,9 +17,9 @@ function help() {
 	console.log(fs.readFileSync(path.join(__dirname, './help.txt'), 'utf8'));
 }
 
-function upload(conn, filePathname, options) {
-	conn.createObject(options, fs.createReadStream(filePathname))
-		.then(() => console.log('File uploaded to CEPH storage.'))
+function remove(conn, filePathname, cephName) {
+	conn.deleteObject(cephName)
+		.then(() => console.log('Object deleted from CEPH storage.'))
 		.catch(err => err.print ? err.print() : console.log(err.message));
 }
 
@@ -28,11 +28,9 @@ function run(argv) {
 		[ 
 			'--help -h [*:=*help] REQUIRED', 
 		], [
-			'--file -f REQUIRED',
 			'--name REQUIRED',
-			'--container NOT NULLABLE',
 			'--connection -c REQUIRED',
-			'--content-type NOT NULLABLE',
+			'--container NOT NULLABLE',
 		]
 	];
 	const cmd = commandos.parse([ 'foo' ].concat(argv), { groups, catcher: help });
@@ -49,16 +47,10 @@ function run(argv) {
 			connJson.container = cmd.container;
 		}
 		const conn = ceph.createConnection(connJson);
-
-		const options = { name: cmd.name };
-		if (cmd['content-type']) {
-			options.contentType = cmd['content-type'];
-		}
-
-		upload(conn, cmd.file, options);
+		remove(conn, cmd.file, cmd.name);
 	}
 }
 
-run.desc = 'Upload file in local system onto remote CEPH storage.';
+run.desc = 'Delete file (object) from remote CEPH storage. ';
 
 module.exports = run;

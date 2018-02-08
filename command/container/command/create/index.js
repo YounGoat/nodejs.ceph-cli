@@ -21,7 +21,7 @@ function create(connPathname, containerName) {
 	const connJson = JSON.parse(fs.readFileSync(connPathname, 'utf8'));
 	const conn = ceph.createConnection(connJson);
 	conn.createContainer(containerName)
-		.then(() => console.log(`New container ${containerName} created on CEPH storage.`))
+		.then(() => console.log(`New container "${containerName}" created on CEPH storage.`))
 		.catch(err => err.print ? err.print() : console.log(err.message));
 }
 
@@ -30,7 +30,7 @@ function run(argv) {
 		[ 
 			'--help -h [*:=*help] REQUIRED', 
 		], [
-			'--name REQUIRED',
+			'--name --container [0] REQUIRED',
 			'--connection -c REQUIRED',
 		]
 	];
