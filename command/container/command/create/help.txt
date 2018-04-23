@@ -4,6 +4,7 @@ NAME
 
 SYNOPSIS
     ceph container create --connection <pathname> [--name] <container-name> 
+    [--meta-* <value>]
 
 OPTIONS
     --name | --container <container-name>
@@ -11,3 +12,6 @@ OPTIONS
 
     --connection | -c <pathname>
     CEPH storage connection configuration file.
+
+    --meta-* <value>
+    Customised meta data.

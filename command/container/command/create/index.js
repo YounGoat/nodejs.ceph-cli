@@ -17,11 +17,12 @@ function help() {
 	console.log(fs.readFileSync(path.join(__dirname, './help.txt'), 'utf8'));
 }
 
-function create(connPathname, containerName) {
+function create(connPathname, name, meta) {
 	const connJson = JSON.parse(fs.readFileSync(connPathname, 'utf8'));
 	const conn = ceph.createConnection(connJson);
-	conn.createContainer(containerName)
-		.then(() => console.log(`New container "${containerName}" created on CEPH storage.`))
+	const options = { name, meta }; 
+	conn.createContainer(options)
+		.then(() => console.log(`New container "${name}" created on CEPH storage.`))
 		.catch(err => err.print ? err.print() : console.log(err.message));
 }
 
@@ -32,6 +33,7 @@ function run(argv) {
 		], [
 			'--name --container [0] REQUIRED',
 			'--connection -c REQUIRED',
+			'--meta-* NOT NULL',
 		]
 	];
 	const cmd = commandos.parse([ 'foo' ].concat(argv), { groups, catcher: help });
@@ -43,7 +45,7 @@ function run(argv) {
 		return help();
 	}
 	else {
-		create(cmd.connection, cmd.name);
+		create(cmd.connection, cmd.name, cmd.meta);
 	}
 }
 

@@ -3,15 +3,15 @@
         "ceph": "bin/ceph.js"
     },
     "dependencies": {
-        "ceph": "^0.4.2",
-        "commandos": "^0.1.5",
-        "noda": "^0.2.0"
+        "ceph": "^0.7.0",
+        "commandos": "^0.3.1",
+        "noda": "^0.4.0"
     },
     "devDependencies": {},
     "directories": {},
     "scripts": {},
     "name": "ceph-cli",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "main": "index.js",
     "keywords": [
         "ceph",

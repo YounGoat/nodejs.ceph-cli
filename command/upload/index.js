@@ -13,7 +13,7 @@ const MODULE_REQUIRE = 1
 	/* in-package */
 	;
 
-function help() {
+function help(ex) {
 	console.log(fs.readFileSync(path.join(__dirname, './help.txt'), 'utf8'));
 }
 
@@ -30,7 +30,7 @@ function run(argv) {
 		], [
 			'--file -f REQUIRED',
 			'--name REQUIRED',
-			'--container NOT NULLABLE',
+			'--container -C NOT NULLABLE',
 			'--connection -c REQUIRED',
 			'--content-type NOT NULLABLE',
 		]

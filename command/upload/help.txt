@@ -16,7 +16,7 @@ OPTIONS
     --connection | -c <pathname>
     CEPH storage connection configuration file.
 
-    --container <container-name>
+    --container | -C <container-name>
     The container name on CEPH storage.
 
     --content-type <mime>
