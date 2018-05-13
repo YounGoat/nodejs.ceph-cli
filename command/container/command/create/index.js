@@ -31,7 +31,7 @@ function run(argv) {
 		[ 
 			'--help -h [*:=*help] REQUIRED', 
 		], [
-			'--name --container [0] REQUIRED',
+			'--name --container -n -C [0] REQUIRED',
 			'--connection -c REQUIRED',
 			'--meta-* NOT NULL',
 		]

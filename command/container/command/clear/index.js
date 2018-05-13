@@ -22,7 +22,8 @@ function catcher(err) {
 	process.exit(1);
 }
 
-function clear(conn, containerName) {
+function clear(conn, containerName, callback) {
+	if (!callback) callback = catcher;
 	let run = () => {
 		let counter = 0;
 		conn.findObjects({ container: containerName, limit: 100 })
@@ -31,6 +32,7 @@ function clear(conn, containerName) {
 				if (counter == 0) {
 					// 已清空。
 					console.log(`Container "${containerName}" is now clear.`);
+					callback();
 				}
 				else {
 					let I = 0;
@@ -46,12 +48,12 @@ function clear(conn, containerName) {
 								run();
 							}
 						})
-						.catch(catcher)
+						.catch(callback)
 						;
 					})
 				}
 			})
-			.catch(catcher)
+			.catch(callback)
 			;
 	};
 	run();
@@ -62,7 +64,7 @@ function run(argv) {
 		[ 
 			'--help -h [*:=*help] REQUIRED', 
 		], [
-			'--name --container [0] REQUIRED',
+			'--name --container -n -C [0] REQUIRED',
 			'--connection -c REQUIRED',			
 		]
 	];
@@ -81,7 +83,6 @@ function run(argv) {
 		clear(conn, cmd.name);
 	}
 }
-
+run.clear = clear;
 run.desc = 'Create new container on remote CEPH storage.';
-
 module.exports = run;

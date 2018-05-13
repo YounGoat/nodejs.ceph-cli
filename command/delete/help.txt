@@ -4,10 +4,14 @@ NAME
 
 SYNOPSIS
     ceph delete --name <object-name> --connection <pathname> [--container <container-name>]
+    ceph delete --prefix <object-name-prefix> --connection <pathname> [--container <container-name>]
 
 OPTIONS
     --name <object-name>
     Object name used in CEPH storage.
+
+    --prefix <object-name-prefix>
+    Object name prefix.
 
     --container <container-name>
     Container name.

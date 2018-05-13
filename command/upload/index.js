@@ -29,7 +29,7 @@ function run(argv) {
 			'--help -h [*:=*help] REQUIRED', 
 		], [
 			'--file -f REQUIRED',
-			'--name REQUIRED',
+			'--name -n REQUIRED',
 			'--container -C NOT NULLABLE',
 			'--connection -c REQUIRED',
 			'--content-type NOT NULLABLE',

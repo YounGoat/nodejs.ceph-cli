@@ -11,6 +11,7 @@ const MODULE_REQUIRE = 1
 	, noda = require('noda')
 	
 	/* in-package */
+	, commandContainerClear = noda.inRequire('command/container/command/clear')
 	;
 
 function help() {
@@ -23,36 +24,10 @@ function catcher(err) {
 }
 
 function clearAndRemoveContainer(conn, containerName) {
-	let run = () => {
-		let counter = 0;
-		conn.findObjects({ container: containerName })
-			.then(data => {
-				counter = data.length;
-				if (counter == 0) {
-					// 已清空。
-					removeContainer(conn, containerName);
-				}
-				else {
-					data.forEach(meta => {
-						conn.deleteObject({
-							container: containerName,
-							name: meta.name
-						})
-						.then(() => {
-							console.log(`Object deleted: ${meta.name}`);
-							if (--counter == 0) {
-								run();
-							}
-						})
-						.catch(catcher)
-						;
-					})
-				}
-			})
-			.catch(catcher)
-			;
-	};
-	run();
+	commandContainerClear.clear(conn, containerName, (err) => {
+		if (err) catcher(err);
+		else removeContainer(conn, containerName);
+	});
 }
 
 function removeContainer(conn, containerName) {
@@ -66,7 +41,7 @@ function run(argv) {
 		[ 
 			'--help -h [*:=*help] REQUIRED', 
 		], [
-			'--name --container [0] REQUIRED',
+			'--name --container -n -C [0] REQUIRED',
 			'--connection -c REQUIRED',
 			'--force NOT ASSIGNABLE',
 		]
