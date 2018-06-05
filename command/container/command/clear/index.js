@@ -18,6 +18,7 @@ function help() {
 }
 
 function catcher(err) {
+	if (!err) return;
 	err.print ? err.print() : console.log(err.message);
 	process.exit(1);
 }
