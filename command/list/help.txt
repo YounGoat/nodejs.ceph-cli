@@ -1,0 +1,19 @@
+
+NAME
+    ceph list - Find objects in remote CEPH storage.
+
+SYNOPSIS
+    ceph list --connection <pathname> [--container <container-name>] [--path <path>] [--prefix <prefix>]
+
+OPTIONS
+    --connection | -c <pathname>
+    CEPH storage connection configuration file.
+
+    --container <container-name>
+    The container name on CEPH storage.
+
+    --path <path>
+    The path of objects.
+
+    --prefix <prefix>
+    The prefix of object names.

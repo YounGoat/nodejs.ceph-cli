@@ -2,6 +2,10 @@
 
 Notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning 2.0.0](http://semver.org/).
 
+##  [0.5.0] - July 14th, 2018
+
+*   Subcommand `list` added.
+
 ##  [0.4.1] - June 5th, 2018
 
 *   Fixed a bug in `ceph container clear`.

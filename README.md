@@ -50,6 +50,9 @@ The following sub commands or command-sets are avaiable under command `ceph`:
 *	__upload__  
 	To create an object with content in the specified file.
 
+*	__list__  
+	To list/find objects.
+
 1.	Run `ceph` to print main manual page.
 1.	Run `ceph <subset-name>` to print manual page for sub command set.
 
