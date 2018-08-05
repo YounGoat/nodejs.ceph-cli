@@ -1,0 +1,20 @@
+
+NAME
+    ceph rename - Rename an existing object.
+
+SYNOPSIS
+    ceph rename --from <object-name> --to <object-name> --connection <pathname> 
+    [--container <container-name>]
+
+OPTIONS
+    --from <object-name>
+    Original object name.
+    
+    --to <object-name>
+    Expected object name.
+
+    --connection | -c <pathname>
+    CEPH storage connection configuration file.
+
+    --container | -C <container-name>
+    The container name on CEPH storage.

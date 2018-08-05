@@ -47,6 +47,9 @@ The following sub commands or command-sets are avaiable under command `ceph`:
 *	__download__  
 	To download an object to local file system.
 
+*	__rename__  
+	Rename an existing object.
+
 *	__upload__  
 	To create an object with content in the specified file.
 
