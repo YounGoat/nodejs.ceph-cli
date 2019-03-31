@@ -1,0 +1,16 @@
+
+NAME
+    ceph info - Display meta data of container or object.
+
+SYNOPSIS
+    ceph info --connection <pathname> [--container <container-name>] [--name <object-name>]
+
+OPTIONS
+    --name <object-name>
+    Object name used in CEPH storage.
+
+    --connection | -c <pathname>
+    CEPH storage connection configuration file.
+
+    --container <container-name>
+    The container name on CEPH storage.

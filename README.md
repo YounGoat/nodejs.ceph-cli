@@ -41,20 +41,24 @@ The following sub commands or command-sets are avaiable under command `ceph`:
 	-	__create__
 	-	__delete__
 	-	__list__
+
 *	__delete__  
 	To delete an object.
 
 *	__download__  
 	To download an object to local file system.
 
+*	__info__  
+	Display meta data of container or object.
+
+*	__list__  
+	To list/find objects.
+
 *	__rename__  
 	Rename an existing object.
 
 *	__upload__  
 	To create an object with content in the specified file.
-
-*	__list__  
-	To list/find objects.
 
 1.	Run `ceph` to print main manual page.
 1.	Run `ceph <subset-name>` to print manual page for sub command set.

@@ -3,7 +3,8 @@ NAME
     ceph container clear - Remove ALL objects in the container on remote CEPH storage. 
 
 SYNOPSIS
-    ceph container clear --connection <pathname> [--name] <container-name>
+    ceph container clear --connection <pathname> [--name] <container-name> 
+                         [--concurrency <number>]
 
 OPTIONS
     --name | --container <container-name>
@@ -11,3 +12,6 @@ OPTIONS
 
     --connection | -c <pathname>
     CEPH storage connection configuration file.
+
+    --concurrency <number>
+    Number of objects to be found and deleted in one batch.

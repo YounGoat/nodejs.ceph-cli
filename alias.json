@@ -1,0 +1,5 @@
+[
+	[ ["read"], ["download", "--verbose"] ],
+	[ ["remove"], ["delete"] ],
+	[ ["rm"], ["delete"] ]
+]

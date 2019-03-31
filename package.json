@@ -10,14 +10,19 @@
     },
     "devDependencies": {},
     "directories": {},
-    "scripts": {},
+    "scripts": {
+        "start": "bin/ceph.js"
+    },
     "name": "ceph-cli",
-    "version": "0.6.0",
+    "version": "0.7.0",
     "main": "index.js",
     "keywords": [
         "ceph",
         "cli"
     ],
+    "engines": {
+        "node": ">=8"
+    },
     "homepage": "https://github.com/YounGoat/nodejs.ceph-cli",
     "description": "CEPH command line interface",
     "repository": {

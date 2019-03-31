@@ -23,16 +23,25 @@ function catcher(err) {
 	process.exit(1);
 }
 
-function clear(conn, containerName, callback) {
+function clear(conn, options, callback) {
+	if (typeof options == 'string') {
+		options = { name: options };
+	}
+	if (!options.concurrency) {
+		options.concurrency = 100;
+	}
+	let retry = /^\d+$/.test(options.retry) ? parseInt(options.retry) : 3;
+
 	if (!callback) callback = catcher;
+
 	let run = () => {
 		let counter = 0;
-		conn.findObjects({ container: containerName, limit: 100 })
+		conn.findObjects({ container: options.name, limit: options.concurrency })
 			.then(data => {
 				counter = data.length;
 				if (counter == 0) {
 					// 已清空。
-					console.log(`Container "${containerName}" is now clear.`);
+					console.log(`Container "${options.name}" is now clear.`);
 					callback();
 				}
 				else {
@@ -40,7 +49,7 @@ function clear(conn, containerName, callback) {
 					data.forEach(meta => {
 						// if (I++) return;
 						conn.deleteObject({
-							container: containerName,
+							container: options.name,
 							name: meta.name
 						})
 						.then(() => {
@@ -49,12 +58,21 @@ function clear(conn, containerName, callback) {
 								run();
 							}
 						})
-						.catch(callback)
+						.catch(ex => {
+							if (retry == 0) return callback(ex);
+							retry--;
+							counter--;
+							if (counter == 0) run();
+						})
 						;
 					})
 				}
 			})
-			.catch(callback)
+			.catch(ex => {
+				if (retry == 0) return callback(ex);
+				retry--;
+				run();
+			})
 			;
 	};
 	run();
@@ -66,7 +84,9 @@ function run(argv) {
 			'--help -h [*:=*help] REQUIRED', 
 		], [
 			'--name --container -n -C [0] REQUIRED',
-			'--connection -c REQUIRED',			
+			'--connection -c REQUIRED',
+			'--concurrency --co NOT NULL',
+			'--retry NOT NULL',
 		]
 	];
 	const cmd = commandos.parse([ 'foo' ].concat(argv), { groups, catcher: help });
@@ -81,7 +101,11 @@ function run(argv) {
 		const connJson = JSON.parse(fs.readFileSync(cmd.connection, 'utf8'));
 		const conn = ceph.createConnection(connJson);
 
-		clear(conn, cmd.name);
+		clear(conn, { 
+			name: cmd.name, 
+			concurrency: cmd.concurrency, 
+			retry: cmd.retry,
+		});
 	}
 }
 run.clear = clear;
